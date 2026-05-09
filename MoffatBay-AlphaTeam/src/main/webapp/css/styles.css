@@ -432,9 +432,21 @@ footer p a:hover { opacity: 0.75; }
   background: url('/MoffatBay-AlphaTeam/images/Registration.jpg') no-repeat center center / cover;
   min-height: 100vh;
   display: flex;
+  flex-direction: column;
+}
+
+/* Centering wrapper that grows to fill space above the footer */
+.register-wrapper {
+  flex: 1;
+  display: flex;
   justify-content: center;
   align-items: center;
-  padding: 30px 0;
+  padding: 100px 0 40px;
+}
+
+/* Remove the section-gap top margin so the CTA/footer sits at the bottom */
+.register-page .call-to-action {
+  margin-top: 0;
 }
 
 .register-container {
@@ -841,7 +853,7 @@ footer p a:hover { opacity: 0.75; }
 
 .login-box p  { 
 	color: #555; 
-	margin-bottom: px; 
+	margin-bottom: 16px; 
 }
 
 .login-box form { 
@@ -850,37 +862,30 @@ footer p a:hover { opacity: 0.75; }
 
 .email-row,
 .password-row {
-	font-size: 15px;
-	color: #555;
-	display: grid;
-	grid-template-columns: 60px 1fr;
-	column-gap: 12px;
-	align-items: center;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
 	width: 350px;
-	margin: 0 auto 10px;
+	margin: 0 auto 14px;
 }
 
-.email-row label    { 
-	transform: translateX(-8px); 
-	font-size: 15px; 
-	color: #555; 
-}
-
-.password-row label { 
-	margin-left: -11px; 
-	font-size: 15px; 
-	color: #555; 
+.email-row label,
+.password-row label {
+	font-size: 12px;
+	font-weight: 700;
+	color: var(--muted);
+	text-transform: uppercase;
+	letter-spacing: 0.6px;
+	margin-bottom: 6px;
 }
 
 .email-row input,
 .password-row input {
-  width: 95%;
+  width: 100%;
   padding: 11px 14px;
-
   background: #f5f5f5;
   border: 1.5px solid #e0e0e0;
-
-  border-radius: 4px;
+  border-radius: var(--radius-sm);
   font-size: 15px;
   font-family: 'Poppins', sans-serif;
 }
@@ -893,11 +898,12 @@ footer p a:hover { opacity: 0.75; }
 }
 .forgot-link {
 	display: block;
-	width: 260px;
-	margin: 4px 0 40px 110px;
+	width: 350px;
+	margin: 4px auto 24px;
 	color: var(--brand);
 	text-decoration: underline;
 	font-size: 13px;
+	text-align: right;
 }
 
 .remember-row {
@@ -905,7 +911,7 @@ footer p a:hover { opacity: 0.75; }
 	justify-content: center;
 	align-items: center;
 	gap: 8px;
-	margin-top: 55px;
+	margin-top: 16px;
 	margin-bottom: 14px;
 	font-size: 14px;
 	color: #666;
@@ -923,12 +929,22 @@ footer p a:hover { opacity: 0.75; }
 .signin-btn {
 	display: block;
 	margin: 0 auto 30px;
-	padding: 10px 26px;
-	border: 1px solid #ccc;
-	border-radius: var(--radius-sm);
-	background-color: #f5f5f5;
+	padding: 12px 30px;
+	border: 1px solid var(--brand);
+	border-radius: var(--radius-pill);
+	background-color: var(--brand);
+	color: #fff;
 	cursor: pointer;
-	font-size: 15px;
+	font-size: 14px;
+	font-family: 'Poppins', sans-serif;
+	font-weight: 500;
+	letter-spacing: 0.5px;
+	transition: var(--transition);
+}
+
+.signin-btn:hover {
+	background-color: #fff;
+	color: var(--brand);
 }
 
 .register-text { 
@@ -951,4 +967,147 @@ footer p a:hover { opacity: 0.75; }
 .register-text a,
 .register-text a:visited {
   color: var(--brand) !important;
+}
+
+
+/* ── Reservation Page ──────────────────────────────────────── */
+.reservation-page {
+  background-color: var(--light-bg);
+  padding-top: 90px;
+  min-height: 100vh;
+}
+
+.reservation-form-card {
+  max-width: 560px;
+  margin: 30px auto 60px;
+  background: #fff;
+  border-radius: var(--radius-md);
+  box-shadow: 0 4px 24px rgba(0,0,0,0.07);
+  overflow: hidden;
+}
+
+.reservation-form-card h1 {
+  font-size: 22px;
+  text-align: center;
+  padding: 28px 32px 0;
+  margin-bottom: 24px;
+}
+
+.reservation-form-card .form-body {
+  padding: 0 32px 32px;
+}
+
+.reservation-form-card .lookup-field label {
+  display: block;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--muted);
+  margin-bottom: 7px;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+}
+
+.reservation-form-card select,
+.reservation-form-card input[type="date"] {
+  width: 100%;
+  padding: 11px 14px;
+  font-size: 15px;
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-sm);
+  font-family: 'Poppins', sans-serif;
+  color: var(--text);
+  background: #fafafa;
+  outline: none;
+  transition: border-color 0.2s;
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+.reservation-form-card select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23afafaf' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  padding-right: 36px;
+}
+
+.reservation-form-card select:focus,
+.reservation-form-card input[type="date"]:focus {
+  border-color: var(--brand);
+  background-color: #fff;
+}
+
+.reservation-submit-btn {
+  display: block;
+  width: 100%;
+  margin-top: 8px;
+  padding: 12px 30px;
+  border: 1px solid var(--brand);
+  border-radius: var(--radius-pill);
+  background-color: var(--brand);
+  color: #fff;
+  cursor: pointer;
+  font-size: 14px;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  transition: var(--transition);
+}
+
+.reservation-submit-btn:hover {
+  background-color: #fff;
+  color: var(--brand);
+}
+
+.reservation-error {
+  color: #c0392b;
+  font-size: 13px;
+  background: #fff0f0;
+  border: 1px solid #f5c6c6;
+  border-radius: var(--radius-sm);
+  padding: 10px 14px;
+  margin-bottom: 16px;
+}
+
+/* ── Mobile section gap ────────────────────────────────────── */
+@media (max-width: 767px) {
+  :root { --section-gap: 70px; }
+}
+
+/* ── Lookup card footer button position override ───────────── */
+.lookup-card-footer .main-button {
+  position: static;
+}
+
+/* ── Lookup form field-level errors ────────────────────────── */
+.lookup-field-error {
+  display: block;
+  font-size: 12px;
+  color: #c0392b;
+  margin-top: 4px;
+  min-height: 16px;
+}
+
+.lookup-field input.input-error {
+  border-color: #c0392b;
+  background: #fff8f8;
+}
+
+/* ── Lookup submit button ──────────────────────────────────── */
+.lookup-submit-btn {
+  padding: 12px 30px;
+  border: 1px solid var(--brand);
+  border-radius: var(--radius-pill);
+  background-color: var(--brand);
+  color: #fff;
+  cursor: pointer;
+  font-size: 14px;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  transition: var(--transition);
+}
+
+.lookup-submit-btn:hover {
+  background-color: #fff;
+  color: var(--brand);
 }

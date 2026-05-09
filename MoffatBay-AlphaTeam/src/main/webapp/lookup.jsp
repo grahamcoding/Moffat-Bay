@@ -13,21 +13,33 @@
     String paramId       = request.getParameter("reservationId");
     String paramLastName = request.getParameter("lastName");
 
-    if (paramId != null && paramLastName != null &&
-        !paramId.trim().isEmpty() && !paramLastName.trim().isEmpty()) {
+    // Only treat as a search attempt if the form was actually submitted (either param present)
+    boolean formSubmitted = (paramId != null || paramLastName != null);
 
+    if (formSubmitted) {
         searched = true;
-        try {
-            int resId = Integer.parseInt(paramId.trim());
-            ReservationDAO dao = new ReservationDAO();
-            result = dao.lookupReservation(resId, paramLastName.trim());
-            if (result == null) {
-                lookupError = "No reservation found matching that ID and last name. Please check your information and try again.";
+        boolean idEmpty   = (paramId == null || paramId.trim().isEmpty());
+        boolean nameEmpty = (paramLastName == null || paramLastName.trim().isEmpty());
+
+        if (idEmpty && nameEmpty) {
+            lookupError = "Please enter your Reservation ID and last name.";
+        } else if (idEmpty) {
+            lookupError = "Please enter your Reservation ID.";
+        } else if (nameEmpty) {
+            lookupError = "Please enter your last name.";
+        } else {
+            try {
+                int resId = Integer.parseInt(paramId.trim());
+                ReservationDAO dao = new ReservationDAO();
+                result = dao.lookupReservation(resId, paramLastName.trim());
+                if (result == null) {
+                    lookupError = "No reservation found matching that ID and last name. Please double-check your information and try again.";
+                }
+            } catch (NumberFormatException e) {
+                lookupError = "Reservation ID must be a number — please check your confirmation email.";
+            } catch (RuntimeException e) {
+                lookupError = "A database error occurred. Please try again later.";
             }
-        } catch (NumberFormatException e) {
-            lookupError = "Reservation ID must be a number.";
-        } catch (RuntimeException e) {
-            lookupError = "A database error occurred. Please try again later.";
         }
     }
 %>
@@ -38,15 +50,10 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-
   <title>Reservation Lookup - Moffat Bay Lodge</title>
-
   <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="css/fontawesome.css">
   <link rel="stylesheet" href="${pageContext.request.contextPath}/css/styles.css">
-  <link rel="stylesheet" href="css/animate.css">
 </head>
 
 <body>
@@ -146,7 +153,7 @@
                     <i class="fa fa-arrow-left"></i> Look up another reservation
                   </a>
                 </div>
-                <div class="main-button" style="position:static;">
+                <div class="main-button">
                   <a href="reservation.jsp">Book Another Stay</a>
                 </div>
               </div>
@@ -194,28 +201,32 @@
               </div>
 
               <div class="lookup-card-body">
-                <form method="GET" action="${pageContext.request.contextPath}/lookup.jsp">
-                  <div class="lookup-field">
-                    <label>Reservation ID</label>
-                    <input type="text" name="reservationId" placeholder="e.g. 1"
-                      value="<%= paramId != null ? paramId : "" %>">
-                  </div>
-                  <div class="lookup-field">
-                    <label>Last Name</label>
-                    <input type="text" name="lastName" placeholder="e.g. Graham"
-                      value="<%= paramLastName != null ? paramLastName : "" %>">
-                  </div>
+                <form method="GET" action="${pageContext.request.contextPath}/lookup.jsp" id="lookupForm" novalidate>
 
                   <% if (searched && lookupError != null) { %>
-                    <p class="lookup-error">
+                    <p class="lookup-error" id="serverError">
                       <i class="fa fa-circle-exclamation"></i> <%= lookupError %>
                     </p>
                   <% } %>
 
+                  <div class="lookup-field">
+                    <label for="reservationId">Reservation ID</label>
+                    <input type="text" id="reservationId" name="reservationId"
+                           placeholder="e.g. 1042"
+                           value="<%= paramId != null ? paramId : "" %>"
+                           inputmode="numeric">
+                    <span class="lookup-field-error" id="idError"></span>
+                  </div>
+                  <div class="lookup-field">
+                    <label for="lastName">Last Name</label>
+                    <input type="text" id="lastName" name="lastName"
+                           placeholder="e.g. Graham"
+                           value="<%= paramLastName != null ? paramLastName : "" %>">
+                    <span class="lookup-field-error" id="nameError"></span>
+                  </div>
+
                   <div class="lookup-card-footer">
-                    <div class="main-button" style="position:static;">
-                      <a href="#" onclick="this.closest('form').submit(); return false;">Look Up Reservation</a>
-                    </div>
+                    <button type="submit" class="lookup-submit-btn">Look Up Reservation</button>
                     <div class="text-button" style="margin-top: 16px;">
                       <a href="reservation.jsp">Need to make a new booking? <i class="fa fa-arrow-right"></i></a>
                     </div>
@@ -254,37 +265,44 @@
     </div>
   </div>
 
-  <!-- CTA -->
-  <div class="call-to-action">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-8">
-          <h2>Ready for an escape?</h2>
-          <h4>Book with us now!</h4>
-        </div>
-        <div class="col-lg-4">
-          <div class="border-button">
-            <a href="reservation.jsp">Make a reservation</a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <footer>
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-12">
-          <p>Copyright &copy; 2026 Alpha Team - Stephanie, Daniel, Sylvester, Reed. All rights reserved.
-          <br>A Project for CSD460-H307: Software Development Capstone. Not a real place, sorry folks!</p>
-        </div>
-      </div>
-    </div>
-  </footer>
+  <%@ include file="components/footer.jsp" %>
 
   <script src="vendor/jquery/jquery.min.js"></script>
   <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
   <script src="js/custom.js"></script>
+
+  <script>
+    document.getElementById('lookupForm').addEventListener('submit', function(e) {
+      var idVal   = document.getElementById('reservationId').value.trim();
+      var nameVal = document.getElementById('lastName').value.trim();
+      var idErr   = document.getElementById('idError');
+      var nameErr = document.getElementById('nameError');
+      var valid   = true;
+
+      idErr.textContent   = '';
+      nameErr.textContent = '';
+      document.getElementById('reservationId').classList.remove('input-error');
+      document.getElementById('lastName').classList.remove('input-error');
+
+      if (!idVal) {
+        idErr.textContent = 'Please enter your Reservation ID.';
+        document.getElementById('reservationId').classList.add('input-error');
+        valid = false;
+      } else if (!/^\d+$/.test(idVal)) {
+        idErr.textContent = 'Reservation ID must be a number.';
+        document.getElementById('reservationId').classList.add('input-error');
+        valid = false;
+      }
+
+      if (!nameVal) {
+        nameErr.textContent = 'Please enter your last name.';
+        document.getElementById('lastName').classList.add('input-error');
+        valid = false;
+      }
+
+      if (!valid) e.preventDefault();
+    });
+  </script>
 
 </body>
 </html>

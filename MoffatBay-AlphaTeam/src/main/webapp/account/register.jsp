@@ -54,22 +54,23 @@
 <!--Header Insert!--->
 <jsp:include page="../components/header.jsp" />
 
-<div class="register-container">
-    <h1>Registration</h1>
+<div class="register-wrapper">
+    <div class="register-container">
+        <h1>Registration</h1>
 
-    <form action="register.jsp" method="post" onsubmit="return confirmSubmission()">
+        <form action="register.jsp" method="post" onsubmit="return confirmSubmission()">
 
-        <label>First Name:</label>
-        <input type="text" name="firstName" required>
+            <label>First Name:</label>
+            <input type="text" name="firstName" required>
 
-        <label>Last Name:</label>
-        <input type="text" name="lastName" required>
+            <label>Last Name:</label>
+            <input type="text" name="lastName" required>
 
-        <label>Email Address:</label>
-        <input type="email" name="email" required>
+            <label>Email Address:</label>
+            <input type="email" name="email" required>
 
-        <label>Phone Number:</label>
-        <input type="text" name="phoneNumber" required>
+            <label>Phone Number:</label>
+            <input type="text" name="phoneNumber" required>
 
 		<label>
 		    Password:
@@ -81,15 +82,15 @@
 		pattern="^(?=.*[A-Z])(?=.*[0-9])[A-Za-z0-9]{8,}$"
 		title="Must be at least 8 characters, include 1 uppercase letter and 1 number">
 
-        <label>Re-type Password:</label>
-        <input type="password" name="confirmPassword" required>
+            <label>Re-type Password:</label>
+            <input type="password" name="confirmPassword" required>
 
 		<div class="main-button">
 		    <a href="#" onclick="this.closest('form').requestSubmit(); return false;">
 		        Submit
 		    </a>
 		</div>
-        <p>
+            <p>
 			Already have an account? <br>
 		</p>
 		
@@ -102,7 +103,8 @@
 		
 
 
-    </form>
+        </form>
+    </div>
 </div>
 
 
@@ -124,6 +126,7 @@ function confirmSubmission() {
     return confirm(message);
 }
 </script>
+
 
 </body>
 </html>

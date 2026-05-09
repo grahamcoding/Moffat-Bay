@@ -80,48 +80,7 @@
 
 
   <!-- Header -->
-  
-  <header class="header-area header-sticky">
-    <div class="container">
-        <div class="row">
-            <div class="col-12">
-                <nav class="main-nav">
-
-                    <!-- Logo  -->
-                    <a href="index.jsp" class="logo">
-                        <img src="images/Logo.jpg" alt="Moffat Bay Lodge Logo">
-                    </a>
-
-                    <!-- Menu -->
-                    <ul class="nav">
-                        <li><a href="index.jsp" class="active">Home</a></li>
-                        <li><a href="about.jsp">About Us</a></li>
-                        <li><a href="attractions.jsp">Attractions</a></li>
-                        <li><a href="reservation.jsp">Book Reservation</a></li>
-                        <li><a href="lookup.jsp">Reservation Lookup</a></li>
-                        <%
-	                        if (session.getAttribute("user") == null) {
-	                    %>
-	                    <li class="auth"><a class="btn-outline" href="account/login.jsp">Login</a></li>
-	                    <%
-	                        } else {
-	                    %>
-	                    <li class="auth"><a class="btn-outline" href="#">Welcome, <%= session.getAttribute("user") %></a></li>
-	                    <li class="auth"><a class="btn-outline" href="account/logout.jsp">Logout</a></li>
-	                    <%
-	                        }
-	                    %>
-                    </ul>
-                    <a class='menu-trigger'>
-                        <span>Menu</span>
-                    </a>
-                </nav>
-            </div>
-        </div>
-    </div>
-  </header>
-
-
+  <jsp:include page="components/header.jsp" />
 
   <!-- Main Banner -->
 
@@ -459,57 +418,7 @@
 
 
 
-  <div class="call-to-action">
-
-    <div class="container">
-
-      <div class="row">
-
-        <div class="col-lg-8">
-
-          <h2>Ready for an escape?</h2>
-
-          <h4>Book with us now!</h4>
-
-        </div>
-
-        <div class="col-lg-4">
-
-          <div class="border-button">
-
-            <a href="reservation.jsp">Make a reservation</a>
-
-          </div>
-
-        </div>
-
-      </div>
-
-    </div>
-
-  </div>
-
-
-
-  <footer>
-
-    <div class="container">
-
-      <div class="row">
-
-        <div class="col-lg-12">
-
-          <p>Copyright © 2026 Alpha Team - Stephanie, Daniel, Sylvester, Reed. All rights reserved. 
-
-          <br>A Project for CSD460-H307: Software Development Capstone. Not a real place, sorry folks!</p>
-
-        </div>
-
-      </div>
-
-    </div>
-
-  </footer>
+  <%@ include file="components/footer.jsp" %>
 
 
 
@@ -540,31 +449,34 @@
 
 
   <script>
-
-    function bannerSwitcher() {
-
-      next = $('.sec-1-input').filter(':checked').next('.sec-1-input');
-
-      if (next.length) next.prop('checked', true);
-
-      else $('.sec-1-input').first().prop('checked', true);
-
+    // Restart CSS animation on the active progress bar fill.
+    // We do this by cloning the element and replacing it, which
+    // forces the browser to reflow and restart the animation from 0.
+    function restartActiveProgressBar() {
+      var activeId = $('.sec-1-input:checked').attr('id');
+      var index = ['banner1','banner2','banner3','banner4'].indexOf(activeId) + 1;
+      var fill = $('.controls label:nth-of-type(' + index + ') .progressbar-fill')[0];
+      if (fill) {
+        var clone = fill.cloneNode(true);
+        fill.parentNode.replaceChild(clone, fill);
+      }
     }
 
+    function bannerSwitcher() {
+      var next = $('.sec-1-input:checked').next('.sec-1-input');
+      if (next.length) next.prop('checked', true);
+      else $('.sec-1-input').first().prop('checked', true);
+      restartActiveProgressBar();
+    }
 
-
+    restartActiveProgressBar();
     var bannerTimer = setInterval(bannerSwitcher, 5000);
 
-
-
     $('nav .controls label').click(function() {
-
       clearInterval(bannerTimer);
-
-      bannerTimer = setInterval(bannerSwitcher, 5000)
-
+      setTimeout(restartActiveProgressBar, 10);
+      bannerTimer = setInterval(bannerSwitcher, 5000);
     });
-
   </script>
 
 
