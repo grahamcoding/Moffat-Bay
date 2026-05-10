@@ -27,6 +27,7 @@
 
     <link rel="stylesheet"
           href="${pageContext.request.contextPath}/css/animate.css">
+         
 
 </head>
 
@@ -55,7 +56,7 @@
         <div class="row">
 
             <!-- Attraction 1 -->
-            <div class="col-md-4 mb-4">
+            <div class="col-md-3 mb-4">
 
                 <div class="card h-100 shadow-sm">
 
@@ -81,7 +82,7 @@
             </div>
 
             <!-- Attraction 2 -->
-            <div class="col-md-4 mb-4">
+            <div class="col-md-3 mb-4">
 
                 <div class="card h-100 shadow-sm">
 
@@ -107,23 +108,49 @@
             </div>
 
             <!-- Attraction 3 -->
-            <div class="col-md-4 mb-4">
+            <div class="col-md-3 mb-4">
 
                 <div class="card h-100 shadow-sm">
 
-                    <img src="${pageContext.request.contextPath}/images/fishing.jpg"
+                    <img src="${pageContext.request.contextPath}/images/whale.jpg"
                          class="card-img-top"
-                         alt="Fishing Tours">
+                         alt="Whale Watching">
 
                     <div class="card-body">
 
                         <h4 class="card-title">
-                            Fishing Excursions
+                            Whale Watching
                         </h4>
 
                         <p class="card-text">
-                            Enjoy unforgettable fishing adventures with local guides and scenic
-                            coastal views around the bay.
+                            Enjoy unforgettable whale watching tours with breathtaking 
+                            ocean views and the chance to see local marine wildlife up close.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+            
+            <!-- Attraction 4 -->
+            <div class="col-md-3 mb-4">
+
+                <div class="card h-100 shadow-sm">
+
+                    <img src="${pageContext.request.contextPath}/images/scuba.jpg"
+                         class="card-img-top"
+                         alt="Scuba Diving">
+
+                    <div class="card-body">
+
+                        <h4 class="card-title">
+                            Scuba Diving
+                        </h4>
+
+                        <p class="card-text">
+                            Explore the underwater beauty with guided scuba diving 
+                            adventures for both beginners and experienced divers.
                         </p>
 
                     </div>
