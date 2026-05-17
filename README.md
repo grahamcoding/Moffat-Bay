@@ -5,6 +5,8 @@
 
 ---
 
+:link: [Video Walk Through](https://www.youtube.com/watch?v=npI9BAlFYyw)
+
 Moffat Bay Lodge is a full-stack web application for a newly built, beautiful and modern fictional resort nestled in the Pacific Northwest of the USA. Built from the ground up as our capstone project for our Software Development Program. It reflects a journey of our coursework and the practical skills we've developed along the way.
 
 The site is feature-complete for front end users and admin, meaning it covers everything from a polished front-end UI to a functioning back-end database layer. It's meant to demonstrate what a modern, clean, and production-minded modern business website looks like when a team builds it together.
