@@ -78,9 +78,8 @@
 		        Must contain 8+ characters with at least 1 number and 1 upper case letter.
 		    </span>
 		</label>
-		<input type="password" name="password" required
-		pattern="^(?=.*[A-Z])(?=.*[0-9])[A-Za-z0-9]{8,}$"
-		title="Must be at least 8 characters, include 1 uppercase letter and 1 number">
+			<!-- Updated password requirements -->
+			<input type="password" name="password" required pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])[A-Za-z0-9]{8,}$" title="Must be at least 8 characters, include 1 uppercase letter, 1 lowercase letter, and 1 number">
 
             <label>Re-type Password:</label>
             <input type="password" name="confirmPassword" required>
@@ -96,7 +95,7 @@
 		
 
 		<div class="text-button">
-			<a href="login.jsp"> 
+			<a href="login.jsp" class="text-button">
 			Back to Login <i class="fa fa-arrow-right"></i>
 			</a>
 	  	</div>
