@@ -67,7 +67,7 @@
 
         form input, form textarea {
             padding: 10px;
-            border: 1px solid var(--border);
+            border: 1px solid #bebebe;
             border-radius: var(--radius-sm);
             font-family: inherit;
         }
@@ -90,6 +90,7 @@
         form input[type="submit"]:hover {
             background: var(--brand-dark);
         }
+        
     </style>
 </head>
 
