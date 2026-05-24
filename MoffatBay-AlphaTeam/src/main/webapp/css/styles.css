@@ -1,5 +1,5 @@
 /* Alpha Team
- * 
+ * Created by: Team, Template from Index, Combined by Daniel Grhaam
  */
 
 /* =============================================================
@@ -66,6 +66,7 @@ section { margin-top: var(--section-gap); }
 
 ::selection      { background: var(--brand); color: #fff; }
 ::-moz-selection { background: var(--brand); color: #fff; }
+
 
 /* ── Buttons ───────────────────────────────────────────────── */
 .border-button a {
@@ -468,7 +469,7 @@ footer p a:hover { opacity: 0.75; }
   display: block;
   font-size: 12px;
   font-weight: 700;
-  color: #666; /* Darkened text */
+  color: #afafaf;
   margin-bottom: 6px;
   text-transform: uppercase;
   letter-spacing: 0.6px;
@@ -476,14 +477,17 @@ footer p a:hover { opacity: 0.75; }
 
 .register-container input[type="text"],
 .register-container input[type="email"],
-.register-container input[type="password"] {
+.register-container input[type="password"],
+.register-container input[type="date"],
+.register-container select {
   width: 100%;
   padding: 11px 14px;
   font-size: 15px;
-  border: 1.5px solid #bebebe; /* Darkened input boxes */
+  border: 1.5px solid #ccc;
   border-radius: 4px;
   font-family: 'Poppins', sans-serif;
-  background: #fafafa;
+  background: #f0f0f0;
+  color: #222;
   margin-bottom: 14px;
 }
 
@@ -512,11 +516,20 @@ footer p a:hover { opacity: 0.75; }
 }
 
 
-.register-container input:focus {
+.register-container input:focus,
+.register-container select:focus {
   border-color: var(--brand);
   background: #fff;
   outline: none;
 }
+
+.register-container input:disabled {
+  background: #e8e8e8;
+  color: #333;
+  cursor: default;
+}
+
+.submit-btn { width: 100%; margin-bottom: 10px; }
 
 .register-container a,
 .register-container a:visited,
@@ -536,6 +549,7 @@ footer p a:hover { opacity: 0.75; }
 .text-button {
   text-align: center;
 }
+
 
 /* ── Responsive ────────────────────────────────────────────── */
 .header-area .main-nav .nav li.auth a {
@@ -755,14 +769,15 @@ footer p a:hover { opacity: 0.75; }
   width: 100%;
   padding: 11px 14px;
   font-size: 15px;
-  border: 1.5px solid var(--border);
+  border: 1.5px solid #ccc;
   border-radius: var(--radius-sm);
   font-family: 'Poppins', sans-serif;
-  color: var(--text);
+  color: #222;
   outline: none;
   transition: border-color 0.2s;
-  background: #fafafa;
+  background: #f0f0f0;
 }
+.lookup-field input::placeholder { color: #888; }
 .lookup-field input:focus { border-color: var(--brand); background: #fff; }
 
 /* Error */
@@ -858,27 +873,6 @@ footer p a:hover { opacity: 0.75; }
 	text-align: left; 
 }
 
-.login-btn {
-  font-size: 14px;
-  color: #fff;
-  background-color: var(--brand);
-  border: 1px solid var(--brand);
-  padding: 12px 30px;
-  display: inline-block;
-  border-radius: var(--radius-pill);
-  font-weight: 500;
-  text-transform: capitalize;
-  letter-spacing: 0.5px;
-  transition: var(--transition);
-  font-family: 'Poppins', sans-serif;
-  cursor: pointer;
-}
-
-.login-btn:hover {
-  background-color: #fff;
-  color: var(--brand);
-  border-color: #fff;
-}
 .email-row,
 .password-row {
 	display: flex;
@@ -892,7 +886,7 @@ footer p a:hover { opacity: 0.75; }
 .password-row label {
 	font-size: 12px;
 	font-weight: 700;
-	color: #666; /* Darkened text */
+	color: var(--muted);
 	text-transform: uppercase;
 	letter-spacing: 0.6px;
 	margin-bottom: 6px;
@@ -902,11 +896,12 @@ footer p a:hover { opacity: 0.75; }
 .password-row input {
   width: 100%;
   padding: 11px 14px;
-  background: #f5f5f5;
-  border: 1.5px solid #bebebe; /* Darkened input boxes*/
+  background: #f0f0f0;
+  border: 1.5px solid #ccc;
   border-radius: var(--radius-sm);
   font-size: 15px;
   font-family: 'Poppins', sans-serif;
+  color: #222;
 }
 
 .email-row input:focus,
@@ -945,7 +940,9 @@ footer p a:hover { opacity: 0.75; }
 	margin: 0; 
 }
 
-.signin-btn {
+.signin-btn,
+.login-btn,
+.submit-btn {
 	display: block;
 	margin: 0 auto 30px;
 	padding: 12px 30px;
@@ -961,9 +958,16 @@ footer p a:hover { opacity: 0.75; }
 	transition: var(--transition);
 }
 
-.signin-btn:hover {
+.signin-btn:hover,
+.login-btn:hover,
+.submit-btn:hover {
 	background-color: #fff;
 	color: var(--brand);
+}
+
+/* Attractions page top spacing to clear fixed header */
+.attractions-wrap {
+	padding-top: 100px;
 }
 
 .register-text { 

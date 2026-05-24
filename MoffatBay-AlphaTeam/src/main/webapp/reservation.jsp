@@ -88,13 +88,13 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 
-<body class="reservation-page" style="background-color: #f2f2f2; padding-top: 80px;">
+<body class="reservation-page">
 
 <!--Header Insert!-->
 <jsp:include page="components/header.jsp" />
 
-<div class="container" style="margin-top: 30px;">
-    <div class="register-container" style="max-width: 600px; margin: 0 auto; text-align: center; padding: 40px 50px;">
+<div class="container">
+    <div class="register-container" style="max-width: 560px; margin: 30px auto;">
 
     <h1>Book a Reservation</h1>
 
@@ -105,7 +105,7 @@
     <form action="reservation.jsp" method="post">
 
         <label>Select a Room:</label>
-        <select name="roomId" id="roomSelect" required onchange="updateRoomDetails(this)" style="width: 100%;">
+        <select name="roomId" id="roomSelect" required onchange="updateRoomDetails(this)">
             <option value="" disabled selected>-- Choose a room --</option>
             <% for (RoomBean room : rooms) { %>
                 <option value="<%= room.getRoomId() %>"
@@ -121,13 +121,13 @@
         <input type="hidden" name="nightlyRate" id="nightlyRate" value="" />
 
         <label>Check-In Date:</label>
-        <input type="date" name="checkIn" id="checkIn" required style="width: 100%;">
+        <input type="date" name="checkIn" id="checkIn" required>
 
         <label>Check-Out Date:</label>
-        <input type="date" name="checkOut" id="checkOut" required style="width: 100%;">
+        <input type="date" name="checkOut" id="checkOut" required>
 
         <label>Number of Guests:</label>
-        <select name="numGuests" required style="width: 100%;">
+        <select name="numGuests" required>
             <option value="" disabled selected>-- Select guests --</option>
             <option value="1">1 Guest</option>
             <option value="2">2 Guests</option>
@@ -137,7 +137,7 @@
             <option value="6">6 Guests</option>
         </select>
 
-        <input type="submit" value="Review Reservation" class="submit-btn" style="width: 100%; margin-top: 10px;">
+        <input type="submit" value="Review Reservation" class="submit-btn">
 
     </form>
     </div>

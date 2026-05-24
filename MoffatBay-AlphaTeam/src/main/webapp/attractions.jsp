@@ -1,5 +1,6 @@
 <!-- Alpha Team
-     Created by: Reed Bunnell -->
+	Created by: Reed Bunnell -->
+
 
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
@@ -40,7 +41,8 @@
     <%@ include file="components/header.jsp" %>
 
     <!-- Attractions Page Content -->
-    <div class="container mt-5 mb-5">
+    <div class="attractions-wrap">
+    <div class="container mb-5">
 
         <!-- Page Title -->
         <div class="text-center mb-5">
@@ -164,6 +166,7 @@
 
         </div>
 
+    </div>
     </div>
 
     <!-- Footer -->

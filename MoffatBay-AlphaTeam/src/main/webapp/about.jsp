@@ -10,7 +10,7 @@
     <meta charset="UTF-8">
     <title>About Us - Moffat Bay Lodge</title>
 
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/styles.css">
 
     <style>
         body {
@@ -41,6 +41,7 @@
 
         .section p {
             margin-bottom: 12px;
+            color: #444;
         }
 
         .section ul {
@@ -90,7 +91,6 @@
         form input[type="submit"]:hover {
             background: var(--brand-dark);
         }
-        
     </style>
 </head>
 

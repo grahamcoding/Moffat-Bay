@@ -13,7 +13,6 @@
     String paramId       = request.getParameter("reservationId");
     String paramLastName = request.getParameter("lastName");
 
-    // Only treat as a search attempt if the form was actually submitted (either param present)
     boolean formSubmitted = (paramId != null || paramLastName != null);
 
     if (formSubmitted) {

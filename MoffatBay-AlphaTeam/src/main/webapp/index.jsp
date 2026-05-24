@@ -449,9 +449,7 @@
 
 
   <script>
-    // Restart CSS animation on the active progress bar fill.
-    // We do this by cloning the element and replacing it, which
-    // forces the browser to reflow and restart the animation from 0.
+
     function restartActiveProgressBar() {
       var activeId = $('.sec-1-input:checked').attr('id');
       var index = ['banner1','banner2','banner3','banner4'].indexOf(activeId) + 1;

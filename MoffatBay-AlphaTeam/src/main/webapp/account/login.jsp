@@ -87,7 +87,7 @@
 			        <label for="rememberMe">Remember me</label>
 			    </div>
 			
-			    <div class="main-button" style="text-align:center; margin-bottom:30px;">
+			    <div class="main-button">
     				<button type="submit" class="login-btn">Sign In</button>
 				</div>
 

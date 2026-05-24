@@ -1,5 +1,10 @@
+/* Alpha Team
+ * Created by: Reed Bunnell
+ */
+
 package beans;
 
+import db.DBConnection;
 import java.sql.*;
 
 public class ContactBean {
@@ -13,33 +18,18 @@ public class ContactBean {
     public void setMessage(String message) { this.message = message; }
 
     public boolean saveMessage() {
-        boolean success = false;
 
-        try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-
-            Connection conn = DriverManager.getConnection(
-                "jdbc:mysql://localhost:3306/moffatbay",
-                "alpha",
-                "password"
-            );
-
+        try (Connection conn = DBConnection.getConnection()) {
             String sql = "INSERT INTO contact_us (name, email, message) VALUES (?, ?, ?)";
             PreparedStatement ps = conn.prepareStatement(sql);
-
             ps.setString(1, name);
             ps.setString(2, email);
             ps.setString(3, message);
-
-            int rows = ps.executeUpdate();
-            if (rows > 0) success = true;
-
-            conn.close();
+            return ps.executeUpdate() > 0;
 
         } catch (Exception e) {
             e.printStackTrace();
+            return false;
         }
-
-        return success;
     }
 }

@@ -83,7 +83,7 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/styles.css">
 </head>
 
-<body class="reservation-page" style="background-color: #f2f2f2;">
+<body class="reservation-page">
 
 <!--Header Insert!-->
 <jsp:include page="components/header.jsp" />
@@ -91,28 +91,28 @@
 <% if (isConfirmed) { %>
 
     <%-- CONFIRMATION SCREEN --%>
-    <div class="register-container" style="max-width: 500px; margin: 100px auto; text-align: center; padding: 40px 50px;">
+    <div class="register-container" style="max-width: 500px; margin: 100px auto; text-align: center;">
 
         <h1>Booking Confirmed!</h1>
 
         <p>Your reservation has been confirmed at Moffat Bay Lodge.</p>
 
-        <h2 style="margin: 20px 0; color: #22b3c1;">
+        <h2 style="margin: 20px 0; color: var(--brand);">
             Reservation #<%= String.format("%05d", confirmedReservationId) %>
         </h2>
 
         <p>Save this number for your records.</p>
 
-        <a href="<%= request.getContextPath() %>/" class="submit-btn" style="display: inline-block; margin-top: 20px; text-decoration: none;">
-            Return to Home
-        </a>
+        <div class="main-button" style="margin-top: 20px;">
+            <a href="<%= request.getContextPath() %>/">Return to Home</a>
+        </div>
 
     </div>
 
 <% } else { %>
 
     <%-- REVIEW SCREEN --%>
-    <div class="register-container" style="max-width: 600px; margin: 100px auto; padding: 40px 50px;">
+    <div class="register-container" style="max-width: 560px; margin: 100px auto;">
 
         <h1 style="text-align: center; margin-bottom: 30px;">Review Your Reservation</h1>
 
@@ -121,37 +121,37 @@
         <% } %>
 
         <label>Room Type:</label>
-        <input type="text" value="<%= draft.getRoomName() %>" disabled style="width: 100%; margin-bottom: 12px;">
-        
+        <input type="text" value="<%= draft.getRoomName() %>" disabled>
+
         <label>Check-In Date:</label>
-        <input type="text" value="<%= draft.getCheckInDate() %>" disabled style="width: 100%; margin-bottom: 12px;">
-        
+        <input type="text" value="<%= draft.getCheckInDate() %>" disabled>
+
         <label>Check-Out Date:</label>
-        <input type="text" value="<%= draft.getCheckOutDate() %>" disabled style="width: 100%; margin-bottom: 12px;">
-        
+        <input type="text" value="<%= draft.getCheckOutDate() %>" disabled>
+
         <label>Number of Nights:</label>
-        <input type="text" value="<%= draft.getTotalNights() %>" disabled style="width: 100%; margin-bottom: 12px;">
+        <input type="text" value="<%= draft.getTotalNights() %>" disabled>
 
         <label>Number of Guests:</label>
-        <input type="text" value="<%= draft.getGuestCount() %>" disabled style="width: 100%; margin-bottom: 12px;">
+        <input type="text" value="<%= draft.getGuestCount() %>" disabled>
 
         <label>Subtotal:</label>
-        <input type="text" value="$<%= String.format("%.2f", draft.getSubtotal()) %>" disabled style="width: 100%; margin-bottom: 12px;">
+        <input type="text" value="$<%= String.format("%.2f", draft.getSubtotal()) %>" disabled>
 
         <label>Taxes and Fees (12%):</label>
-        <input type="text" value="$<%= String.format("%.2f", draft.getTax()) %>" disabled style="width: 100%; margin-bottom: 12px;">
+        <input type="text" value="$<%= String.format("%.2f", draft.getTax()) %>" disabled>
 
         <label>Total Charged:</label>
-        <input type="text" value="$<%= String.format("%.2f", draft.getTotalPrice()) %>" disabled style="width: 100%; margin-bottom: 20px;">
+        <input type="text" value="$<%= String.format("%.2f", draft.getTotalPrice()) %>" disabled>
 
         <form action="reservation_summary.jsp" method="post">
             <input type="hidden" name="action" value="confirm" />
-            <input type="submit" value="Confirm and Book" class="submit-btn" style="width: 100%; margin-bottom: 10px;">
+            <input type="submit" value="Confirm and Book" class="submit-btn">
         </form>
 
         <form action="reservation_summary.jsp" method="post">
             <input type="hidden" name="action" value="cancel" />
-            <input type="submit" value="Go Back and Change" class="submit-btn" style="width: 100%;">
+            <input type="submit" value="Go Back and Change" class="submit-btn">
         </form>
 
     </div>
